@@ -1,0 +1,42 @@
+<view class='container'>
+  <image src='/images/background/back.png' style='width: {{width}}px; height: {{height}}px'></image>
+
+  <view class='dev-title' wx:if='{{hasDev}}'>
+    <image class='dev-icon' src='/images/dev_pic/devicon.png'></image>
+    <text class='dev-count'>{{devCount+countText}}</text>
+  </view>
+  <view class='headline' wx:if='{{hasDev}}'>{{headline}}</view>
+
+  <view class='dev-info' wx:if='{{isScan}}' bindtap='ceshi'>
+    <image class='dev-image' src='/images/dev_pic/dev.png'></image>
+    <view class='dev-info-text'>
+      <text>{{devName}}</text>
+      <text>{{isOnline}}</text>
+    </view>
+  </view>
+  
+  <view class='btn-area'>
+    <button class='btn-scan' hover-class='btn-hover-scan' bindtap='btnScanCode'>
+      <image src='/images/btn_pic/scan.png' style='width: 32px; height: 32px; position: absolute; left: 20%; bottom: 15%'></image>
+      {{btnScanText}}
+    </button>
+    <button class='btn-input' hover-class='btn-hover-input' bindtap='btnInputNum'>
+      <image src='/images/btn_pic/input.png' style='width: 32px; height: 32px; position: absolute; left: 15%; bottom: 15%'></image>
+      {{btnInputText}}
+    </button>
+  </view>
+  <view class='mask-view' catchtouchmove='prenventTouchMove' wx:if='{{showModal}}'></view>
+  <view class='dialog-view' wx:if="{{showModal}}">
+    <view class='title-view'>{{inputTitle}}</view>
+    <view class='content-view'>
+      <view class='input-view'>
+        <input class='input' type='{{inputType}}' placeholder-class="input-holder" placeholder='{{placeholder}}' focus='{{focus}}' bindinput='inputChange'>
+        </input>
+      </view>
+    </view>
+    <view class='footer-view'>
+      <view class='cancel-view' bindtap='onCancel' data-status='cancel'>{{cancelText}}</view>
+      <view class='confirm-view' bindtap='onConfirm' data-status='confirm'>{{confirmText}}</view>
+    </view>
+  </view>
+</view>

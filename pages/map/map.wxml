@@ -1,0 +1,27 @@
+<view class='page-map'>
+  <map id='{{mapAttr.id}}' polyline='{{mapAttr.polyline}}' bindmarkertap='clickMarkers' circles='{{mapAttr.circles}}' markers='{{mapAttr.markers}}' subkey='{{mapAttr.subkey}}' scale="{{mapAttr.scale}}" latitude='{{mapAttr.latitude}}' longitude='{{mapAttr.longitude}}'
+    style="width: {{width}}px; height: {{height}}px;" show-location='{{mapAttr.showLocation}}' enable-3D='{{mapAttr.enable3d}}' show-compass='{{mapAttr.showCompass}}' enable-rotate='{{mapAttr.enableRotate}}' enable-overlooking='{{mapAttr.enableOverlooking}}'>
+    <cover-view class='controls-right'>
+      <cover-image class='magnify' bindtap='clickToMagnify' src='/images/map_pic/magnify.png'></cover-image>
+      <cover-image class='shrink' bindtap='clickToShrink' src='/images/map_pic/shrink.png'></cover-image>
+      <cover-image class='locate' bindtap='moveToLocation' src='/images/map_pic/locate.png'></cover-image>
+    </cover-view>
+    <cover-view class='controls-left'>
+      <cover-image class='choose' bindtap='choosePosition' src='/images/map_pic/choose.png'></cover-image>
+    </cover-view>
+    <cover-view class='mask-view' catchtouchmove='prenventTouchMove' wx:if='{{showModal}}'></cover-view>
+    <cover-view class='dialog-view' wx:if="{{showModal}}">
+      <cover-view class='title-view'>{{inputTitle}}</cover-view>
+      <cover-view class='content-view'>
+        <cover-view class='input-view'>
+          <input class='input' type='{{inputType}}' placeholder-class="input-holder" placeholder='{{placeholder}}' focus='{{focus}}' bindinput='inputChange'>
+          </input>
+        </cover-view>
+      </cover-view>
+      <cover-view class='footer-view'>
+        <cover-view class='cancel-view' bindtap='onCancel' data-status='cancel'>{{cancelText}}</cover-view>
+        <cover-view class='confirm-view' bindtap='onConfirm' data-status='confirm'>{{confirmText}}</cover-view>
+      </cover-view>
+    </cover-view>
+  </map>
+</view>

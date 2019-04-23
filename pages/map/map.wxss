@@ -1,0 +1,118 @@
+.controls-right {
+  position: absolute;
+  right: 30rpx;
+  bottom: 10rpx;
+}
+
+.controls-left {
+  position: absolute;
+  left: 30rpx;
+  bottom: 10rpx;
+}
+
+.locate {
+  height: 48px;
+  width: 48px;
+  margin-bottom: 70rpx;
+}
+
+.magnify {
+  height: 32px;
+  width: 32px;
+  margin-bottom: 25rpx;
+  margin-left: 20rpx;
+}
+
+.shrink {
+  height: 32px;
+  width: 32px;
+  margin-bottom: 100rpx;
+  margin-left: 20rpx;
+}
+
+.choose {
+  height: 48px;
+  width: 48px;
+  margin-bottom: 80rpx;
+}
+
+.mask-view {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.5;
+  overflow: hidden;
+  z-index: 9000;
+  color: #fff;
+}
+
+.dialog-view {
+  width: 540rpx;
+  overflow: hidden;
+  position: fixed;
+  top: 50%;
+  left: 0;
+  z-index: 9999;
+  background: #fff;
+  margin: -180rpx 105rpx;
+  border-radius: 36rpx;
+}
+
+.title-view {
+  padding-top: 50rpx;
+  font-size: 36rpx;
+  color: #030303;
+  text-align: center;
+}
+
+.content-view {
+  padding: 50rpx 32rpx;
+}
+
+.input-view {
+  display: flex;
+  background: #fff;
+  border-bottom: 2rpx solid #ddd;
+  border-radius: 4rpx;
+  font-size: 28rpx;
+}
+
+.input {
+  width: 100%;
+  height: 82rpx;
+  font-size: 28rpx;
+  line-height: 28rpx;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  color: #333;
+}
+
+.input-holder {
+  color: #666;
+  font-size: 28rpx;
+}
+
+.footer-view {
+  display: flex;
+  flex-direction: row;
+  height: 86rpx;
+  border-top: 1px solid #dedede;
+  font-size: 34rpx;
+  line-height: 86rpx;
+}
+
+.cancel-view {
+  width: 50%;
+  color: #666;
+  text-align: center;
+  border-right: 1px solid #dedede;
+}
+
+.confirm-view {
+  width: 50%;
+  color: #ec5300;
+  text-align: center;
+}

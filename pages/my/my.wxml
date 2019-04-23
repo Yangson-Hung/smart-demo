@@ -1,0 +1,25 @@
+<view class='page-my'>
+  <view class='userinfo'>
+    <view class='login-view' wx:if='{{!hasUserInfo && canIUse}}'>
+      <image class='login-image' src='{{loginImg}}' mode='cover'></image>
+      <button class='login-btn' open-type='getUserInfo' bindgetuserinfo='getUserInfo'>点击登录</button>
+    </view>
+    <block wx:else>
+      <view class='userinfo-nav'>
+        <image class='userinfo-avatar' src='{{userInfo.avatarUrl}}' mode='cover'></image>
+        <text class='userinfo-nickname'>{{userInfo.nickName}}</text>
+      </view>
+    </block>
+  </view>
+  <block wx:for='{{myList}}' wx:key='1' wx:for-item='list'>
+    <view class='list {{list.router}}' hover-class='list-hover' bindtap='turnToPage' data-router='{{list.router}}'>
+      <image class='icon' src='{{list.iconPath}}'></image>
+      <text class='name'>{{list.name}}</text>
+      <view class='arrow'></view>
+    </view>
+  </block>
+
+</view>
+<!-- <navigator url="../template-message/template-message" hover-class="navigator-hover">
+  <button type="default">跳转</button>
+</navigator> -->
