@@ -1,11 +1,27 @@
 <view class='page-map'>
-  <map id='{{mapAttr.id}}' polyline='{{mapAttr.polyline}}' bindmarkertap='clickMarkers' circles='{{mapAttr.circles}}' markers='{{mapAttr.markers}}' subkey='{{mapAttr.subkey}}' scale="{{mapAttr.scale}}" latitude='{{mapAttr.latitude}}' longitude='{{mapAttr.longitude}}'
-    style="width: {{width}}px; height: {{height}}px;" show-location='{{mapAttr.showLocation}}' enable-3D='{{mapAttr.enable3d}}' show-compass='{{mapAttr.showCompass}}' enable-rotate='{{mapAttr.enableRotate}}' enable-overlooking='{{mapAttr.enableOverlooking}}'>
+  <map 
+    id='{{mapAttr.id}}' 
+    polyline='{{mapAttr.polyline}}' 
+    bindmarkertap='clickMarkers' 
+    circles='{{mapAttr.circles}}' 
+    markers='{{mapAttr.markers}}' 
+    subkey='{{mapAttr.subkey}}' 
+    scale="{{mapAttr.scale}}" 
+    latitude='{{mapAttr.latitude}}' 
+    longitude='{{mapAttr.longitude}}' 
+    style="width: {{width}}px; height: {{height}}px;" 
+    show-location='{{mapAttr.showLocation}}' 
+    enable-3D='{{mapAttr.enable3d}}' 
+    show-compass='{{mapAttr.showCompass}}' 
+    enable-rotate='{{mapAttr.enableRotate}}' 
+    enable-overlooking='{{mapAttr.enableOverlooking}}'>
+    <!-- 地图 -->
     <cover-view class='controls-right'>
       <cover-image class='magnify' bindtap='clickToMagnify' src='/images/map_pic/magnify.png'></cover-image>
       <cover-image class='shrink' bindtap='clickToShrink' src='/images/map_pic/shrink.png'></cover-image>
       <cover-image class='locate' bindtap='moveToLocation' src='/images/map_pic/locate.png'></cover-image>
     </cover-view>
+
     <cover-view class='controls-left'>
       <cover-image class='choose' bindtap='choosePosition' src='/images/map_pic/choose.png'></cover-image>
     </cover-view>
