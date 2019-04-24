@@ -10,6 +10,12 @@ App({
     //设置地图样式
     this.setMapStytle();
 
+    //读取设备信息
+    this.readDevInfo();
+
+    //读取地点信息
+    this.readPositionInfo();
+
     // 登录
     wx.login({
       success: res => {
@@ -96,11 +102,52 @@ App({
     }
   },
   /**
+   * 从本地读取设备信息
+   */
+  readDevInfo: function() {
+    var devInfo = wx.getStorageSync('devInfo')
+    if (devInfo !== "") {
+      this.globalData.devInfo = devInfo
+    }
+  },
+  /**
+   * 从本地读取地点信息
+   */
+  readPositionInfo: function() {
+    var circleCenter = wx.getStorageSync('circleCenter')
+    if (circleCenter !== "") {
+      this.globalData.circleCenter = circleCenter
+    }
+
+    var circleRadius = wx.getStorageSync('circleRadius')
+    if (circleRadius !== "") {
+      this.globalData.circleRadius = circleRadius
+    }
+
+    var markerInfo = wx.getStorageSync('markerInfo')
+    if (markerInfo !== "") {
+      this.globalData.markerInfo = markerInfo
+    }
+  },
+  /**
    * 全局数据
    */
   globalData: {
     openid: null,
-    hasDev: false,
+    markerInfo: {
+      laittude: null,
+      longitude: null
+    },
+    circleCenter: {
+      laittude: null,
+      longitude: null
+    },
+    circleRadius: 0,
+    devInfo: {
+      isScan: false,
+      hasScan: false,
+      devCount: 0
+    },
     userInfo: null,
     systemInfo: {},
     appTitle: "安若智行监护",

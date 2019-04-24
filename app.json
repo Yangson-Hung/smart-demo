@@ -43,5 +43,6 @@
     "scope.userLocation": {
       "desc": "您的位置信息将用于知悉附近的设备"
     }
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

@@ -17,11 +17,11 @@
   
   <view class='btn-area'>
     <button class='btn-scan' hover-class='btn-hover-scan' bindtap='btnScanCode'>
-      <image src='/images/btn_pic/scan.png' style='width: 32px; height: 32px; position: absolute; left: 20%; bottom: 15%'></image>
+      <image src='/images/btn_pic/scan.png' style='width: 32px; height: 32px; position: absolute; left: 80rpx; bottom: 15rpx'></image>
       {{btnScanText}}
     </button>
     <button class='btn-input' hover-class='btn-hover-input' bindtap='btnInputNum'>
-      <image src='/images/btn_pic/input.png' style='width: 32px; height: 32px; position: absolute; left: 15%; bottom: 15%'></image>
+      <image src='/images/btn_pic/input.png' style='width: 32px; height: 32px; position: absolute; left: 80rpx; bottom: 15rpx'></image>
       {{btnInputText}}
     </button>
   </view>

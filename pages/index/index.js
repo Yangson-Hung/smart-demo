@@ -26,10 +26,10 @@ Page({
     confirmText: "确定",
     inputValue: null,
     scanValue: null,
-    isScan: false,
-    devCount: 0,
+    isScan: app.globalData.devInfo.isScan,
+    hasDev: app.globalData.devInfo.hasDev,
+    devCount: app.globalData.devInfo.devCount,
     countText: '个设备',
-    hasDev: false,
     headline: '设备',
     devName: '默认名称',
     isOnline: '在线'
@@ -55,8 +55,15 @@ Page({
           hasDev: true,
           isScan: true
         })
-        app.globalData.hasDev = that.data.hasDev  
-        console.log(app.globalData.hasDev)  
+        var devInfo = {
+          devCount: that.data.devCount,
+          hasDev: that.data.hasDev,
+          isScan: that.data.isScan
+        }
+        //全局设置
+        app.globalData.devInfo = devInfo
+        //本地保存
+        that.setDevStorge('devInfo', devInfo)
       },
       fail(err) {
         console.log(err)
@@ -135,5 +142,8 @@ Page({
   },
   ceshi() {
     console.log(123)
+  },
+  setDevStorge: function (key, data) {
+    wx.setStorageSync(key, data)
   }
 })

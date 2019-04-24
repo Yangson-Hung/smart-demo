@@ -25,22 +25,14 @@ Page({
         iconPath: '/images/map_pic/home.png',
         width: '24px',
         height: '24px',
-        latitude: null,
-        longitude: null,
-        callout: {
-          content: '点击可设置范围',
-          color: '#1e90ff',
-          fontSize: 10,
-          borderRadius: '10',
-          bgColor: '#ffffff',
-          padding: 10,
-          display: 'ALWAYS'
-        },
+        latitude: app.globalData.markerInfo.latitude,
+        longitude: app.globalData.markerInfo.longitude,
+        callout: null,
       }],
       circles: [{
-        latitude: null,
-        longitude: null,
-        radius: 0,
+        latitude: app.globalData.circleCenter.latitude,
+        longitude: app.globalData.circleCenter.longitude,
+        radius: app.globalData.circleRadius,
         color: "#2a5caa",
         fillColor: "#7cb5ec88",
         strokeWidth: 1
@@ -269,6 +261,11 @@ Page({
         'mapAttr.circles[0].longitude': currMarker.longitude,
         'mapAttr.markers[0].callout': null
       })
+      var circleCenter = {
+        latitude: currMarker.latitude,
+        longitude: currMarker.longitude
+      }
+      this.setPositionInfo('circleCenter', circleCenter)
     }
   },
   /**
@@ -286,7 +283,21 @@ Page({
           //选择位置后获得经纬度
           'mapAttr.markers[0].latitude': res.latitude,
           'mapAttr.markers[0].longitude': res.longitude,
+          'mapAttr.markers[0].callout': {
+            content: '点击设置范围',
+            color: '#1e90ff',
+            fontSize: 10,
+            borderRadius: '10',
+            bgColor: '#ffffff',
+            padding: 10,
+            display: 'ALWAYS'
+          }
         })
+        var markerInfo = {
+          latitude: res.latitude,
+          longitude: res.longitude
+        }
+        that.setPositionInfo('markerInfo', markerInfo)
       }
     })
   },
@@ -305,6 +316,8 @@ Page({
         inputValue: null,
         showModal: !this.data.showModal,
       })
+      var circleRadius = this.data.mapAttr.circles[0].radius
+      this.setPositionInfo('circleRadius', circleRadius)
     } else {
       app.showToast({
         title: '输入值不正确',
@@ -342,7 +355,7 @@ Page({
    */
   showDevLocation: function() {
     console.log('show')
-    if (app.globalData.hasDev) {
+    if (app.globalData.devInfo.hasDev) {
       this.setData({
         'mapAttr.markers[1]': {
           id: 2,
@@ -355,5 +368,11 @@ Page({
       })
       console.log(this.data.mapAttr.markers)
     }
+  },
+  /**
+   * 保存地点信息
+   */
+  setPositionInfo: function(key, data) {
+    wx.setStorageSync(key, data)
   }
 })
