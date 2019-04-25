@@ -17,7 +17,7 @@ Page({
     inputText: "输入编号",
     width: app.globalData.systemInfo.windowWidth,
     height: app.globalData.systemInfo.windowHeight,
-    showModal: false,
+    isShowInputDialog: false,
     inputTitle: "提示",
     inputType: "number",
     placeholder: "请输入设备编号",
@@ -76,10 +76,8 @@ Page({
         that.setDevStorge('devInfo', devInfo)
       },
       fail(res) {
-        console.log(res)
       },
       complete(res) {
-
       }
     })
   },
@@ -88,9 +86,9 @@ Page({
    */
   inputNum: function() {
     this.setData({
-      isShowMenu: false
+      isShowMenu: false,
+      isShowInputDialog: true
     })
-    this.showModal()
   },
   /**
    * input触发事件
@@ -118,7 +116,9 @@ Page({
       })
       //未写函数的调用
       this.myfun()
-      this.hideModal()
+      this.setData({
+        isShowInputDialog: false
+      })
     } else {
       app.showToast({
         title: '输入错误',
@@ -131,22 +131,8 @@ Page({
    * 对话框取消按钮
    */
   onCancel: function() {
-    this.hideModal()
-  },
-  /**
-   * 显示模态框
-   */
-  showModal: function() {
     this.setData({
-      showModal: true
-    })
-  },
-  /**
-   * 隐藏模态框
-   */
-  hideModal: function() {
-    this.setData({
-      showModal: false
+      isShowInputDialog: false
     })
   },
   /**
