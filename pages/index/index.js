@@ -3,7 +3,7 @@ Page({
   /**
    * 转发分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     return {
       title: app.globalData.share_slogan,
       path: '/pages/index/index'
@@ -43,7 +43,7 @@ Page({
   /**
    * 扫码添加设备
    */
-  scanCode: function () {
+  scanCode: function() {
     this.setData({
       isShowMenu: false
     })
@@ -61,7 +61,7 @@ Page({
           duration: 1000
         })
         that.setData({
-          devCount: that.data.devCount+1,
+          devCount: that.data.devCount + 1,
           hasDev: true,
           isScan: true
         })
@@ -75,15 +75,18 @@ Page({
         //本地保存
         that.setDevStorge('devInfo', devInfo)
       },
-      fail(err) {
-        console.log(err)
+      fail(res) {
+        console.log(res)
+      },
+      complete(res) {
+
       }
     })
   },
   /**
    * 输入编号添加设备
    */
-  inputNum: function () {
+  inputNum: function() {
     this.setData({
       isShowMenu: false
     })
@@ -92,7 +95,7 @@ Page({
   /**
    * input触发事件
    */
-  inputChange: function (e) {
+  inputChange: function(e) {
     console.log(e.detail.value)
     this.setData({
       inputValue: e.detail.value
@@ -101,13 +104,13 @@ Page({
   /**
    * 弹出框蒙层截断touchmove事件
    */
-  prenventTouchMove: function () {
+  prenventTouchMove: function() {
     console.log(123)
   },
   /**
    * 对话框确定按钮
    */
-  onConfirm: function () {
+  onConfirm: function() {
     if (this.data.inputValue !== "" && this.data.inputValue !== null) {
       app.showToast({
         title: '输入成功',
@@ -127,13 +130,13 @@ Page({
   /**
    * 对话框取消按钮
    */
-  onCancel: function () {
+  onCancel: function() {
     this.hideModal()
   },
   /**
    * 显示模态框
    */
-  showModal: function () {
+  showModal: function() {
     this.setData({
       showModal: true
     })
@@ -141,7 +144,7 @@ Page({
   /**
    * 隐藏模态框
    */
-  hideModal: function () {
+  hideModal: function() {
     this.setData({
       showModal: false
     })
@@ -157,7 +160,7 @@ Page({
   ceshi() {
     console.log(123)
   },
-  setDevStorge: function (key, data) {
+  setDevStorge: function(key, data) {
     wx.setStorageSync(key, data)
   }
 })

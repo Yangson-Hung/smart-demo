@@ -6,8 +6,8 @@
   <!-- 点击加号对话框 -->
   <view class='add-dialog' wx:if='{{isShowMenu}}'>
     <view class='add-content'>
-      <view class='scan-item' bindtap='scanCode' hover-class='add-dialog-hover'>{{scanText}}</view>
-      <view class='input-item' bindtap='inputNum' hover-class='add-dialog-hover'>{{inputText}}</view>
+      <view class='scan-item' bindtap='scanCode' hover-class='scan-item-hover' hover-stay-time='2000'>{{scanText}}</view>
+      <view class='input-item' bindtap='inputNum' hover-class='input-item-hover' hover-stay-time='2000'>{{inputText}}</view>
     </view>
   </view>
   <!-- 显示设备数 -->

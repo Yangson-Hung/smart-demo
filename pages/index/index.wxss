@@ -23,6 +23,18 @@
   border-radius: 15rpx;
 }
 
+.scan-item-hover {
+  background-color: #e6e6e6;
+  border-top-left-radius: 15rpx;
+  border-top-right-radius: 15rpx;
+}
+
+.input-item-hover {
+  background-color: #e6e6e6;
+  border-bottom-left-radius: 15rpx;
+  border-bottom-right-radius: 15rpx;
+}
+
 .add-content {
   height: 100%;
   display: flex;
