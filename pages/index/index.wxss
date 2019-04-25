@@ -7,6 +7,43 @@
   left: 50rpx;
 }
 
+.addImg {
+  height: 24px;
+  width: 24px;
+  position: absolute;
+  right: 30rpx;
+  top: 30rpx;
+}
+
+.add-dialog {
+  width: 150rpx;
+  position: fixed;
+  top: 90rpx;
+  right: 45rpx;
+  background-color: #f5f5f5;
+  border-radius: 15rpx;
+}
+
+.add-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size: 40rpx;
+  align-items: center;
+  justify-content: center;
+}
+
+.scan-item {
+  padding: 5px 15px;
+  border-bottom: 1px solid #dedede;
+  color: #666;
+}
+
+.input-item {
+  padding: 5px 15px;
+  color: #666;
+}
+
 .dev-icon {
   width: 24px;
   height: 24px;

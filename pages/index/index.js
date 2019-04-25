@@ -34,6 +34,17 @@ Page({
     devName: '默认名称',
     isOnline: '在线'
   },
+  showMenu: function() {
+    // wx.showActionSheet({
+    //   itemList: ['1','2'],
+    //   success: function() {
+
+    //   }
+    // })
+    this.setData({
+      isShowMenu: true
+    })
+  },
   /**
    * 扫码添加设备
    */

@@ -1,6 +1,14 @@
 <view class='container'>
   <image src='/images/background/back.png' style='width: {{width}}px; height: {{height}}px'></image>
 
+  <image class='addImg' src='/images/index_pic/add.png' bindtap='showMenu'></image>
+  <view class='add-dialog' wx:if='{{isShowMenu}}'>
+    <view class='add-content'>
+      <view class='scan-item'>123</view>
+      <view class='input-item'>456</view>
+    </view>
+  </view>
+
   <view class='dev-title' wx:if='{{hasDev}}'>
     <image class='dev-icon' src='/images/dev_pic/devicon.png'></image>
     <text class='dev-count'>{{devCount+countText}}</text>
@@ -26,6 +34,7 @@
     </button>
   </view>
   <view class='mask-view' catchtouchmove='prenventTouchMove' wx:if='{{showModal}}'></view>
+
   <view class='dialog-view' wx:if="{{showModal}}">
     <view class='title-view'>{{inputTitle}}</view>
     <view class='content-view'>
