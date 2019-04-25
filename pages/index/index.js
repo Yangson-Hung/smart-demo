@@ -88,7 +88,8 @@ Page({
   /**
    * 弹出框蒙层截断touchmove事件
    */
-  preventTouchMove: function () {
+  prenventTouchMove: function () {
+    console.log(123)
   },
   /**
    * 对话框确定按钮

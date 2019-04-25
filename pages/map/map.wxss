@@ -45,7 +45,6 @@
   background: #000;
   opacity: 0.5;
   overflow: hidden;
-  z-index: 9000;
   color: #fff;
 }
 
@@ -55,7 +54,6 @@
   position: fixed;
   top: 50%;
   left: 0;
-  z-index: 9999;
   background: #fff;
   margin: -180rpx 105rpx;
   border-radius: 36rpx;

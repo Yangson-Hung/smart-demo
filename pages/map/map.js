@@ -27,7 +27,7 @@ Page({
         height: '24px',
         latitude: app.globalData.markerInfo.latitude,
         longitude: app.globalData.markerInfo.longitude,
-        callout: null,
+        callout: {}
       }],
       circles: [{
         latitude: app.globalData.circleCenter.latitude,
@@ -259,7 +259,7 @@ Page({
       this.setData({
         'mapAttr.circles[0].latitude': currMarker.latitude,
         'mapAttr.circles[0].longitude': currMarker.longitude,
-        'mapAttr.markers[0].callout': null
+        'mapAttr.markers[0].callout': {}
       })
       var circleCenter = {
         latitude: currMarker.latitude,
@@ -311,7 +311,7 @@ Page({
         duration: 1000
       })
       this.setData({
-        'mapAttr.circles[0].radius': this.data.inputValue,
+        'mapAttr.circles[0].radius': +this.data.inputValue,
         //赋值后清除，if控制入口
         inputValue: null,
         showModal: !this.data.showModal,
@@ -338,14 +338,17 @@ Page({
     })
   },
   /**
-   * 弹出框蒙层截断touchmove事件
+   * input自动聚焦
    */
-  preventTouchMove: function() {},
+  autoFocus: function() {
+    this.setData({
+      focus: true
+    })
+  },
   /**
    * input触发事件
    */
   inputChange: function(e) {
-    console.log(e.detail.value)
     this.setData({
       inputValue: e.detail.value
     })
@@ -354,7 +357,6 @@ Page({
    * 添加设备成功后，地图上显示标记
    */
   showDevLocation: function() {
-    console.log('show')
     if (app.globalData.devInfo.hasDev) {
       this.setData({
         'mapAttr.markers[1]': {
@@ -366,7 +368,6 @@ Page({
           longitude: 119.3105632067,
         }
       })
-      console.log(this.data.mapAttr.markers)
     }
   },
   /**
