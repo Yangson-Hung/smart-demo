@@ -1,3 +1,4 @@
+var bmap = require('../../libs/bmap-wx.min.js');
 const app = getApp()
 Page({
   /**
@@ -13,6 +14,8 @@ Page({
    * 页面数据
    */
   data: {
+    weatherData: "",
+    ak: "mtxmirSI8Rrr4auxsCXklYYCeg4f6ECH",
     scanText: "扫二维码",
     inputText: "输入编号",
     width: app.globalData.systemInfo.windowWidth,
@@ -26,10 +29,9 @@ Page({
     confirmText: "确定",
     inputValue: null,
     scanValue: null,
-    isScan: app.globalData.devInfo.isScan,
     hasDev: app.globalData.devInfo.hasDev,
     devCount: app.globalData.devInfo.devCount,
-    countText: '个设备',
+    countText: '当前设备数：',
     headline: '设备',
     devName: '默认名称',
     isOnline: '在线',
@@ -62,13 +64,11 @@ Page({
         })
         that.setData({
           devCount: that.data.devCount + 1,
-          hasDev: true,
-          isScan: true
+          hasDev: true
         })
         var devInfo = {
           devCount: that.data.devCount,
           hasDev: that.data.hasDev,
-          isScan: that.data.isScan
         }
         //全局设置
         app.globalData.devInfo = devInfo
@@ -143,10 +143,35 @@ Page({
       inputValue: null
     })
   },
-  ceshi() {
+  addDevInfo: function() {
     console.log(123)
   },
   setDevStorge: function(key, data) {
     wx.setStorageSync(key, data)
+  },
+  /**
+   * 获取天气信息
+   */
+  bMapWeather: function() {
+    var that = this
+    var BMap = new bmap.BMapWX({
+      ak: that.data.ak
+    })
+    var fail = function (data) {
+      console.log('获取天气失败！')
+    }
+    var success = function (data) {
+      console.log('获取天气成功！')
+      var weatherData = data.currentWeather[0]
+      console.log(weatherData)
+      weatherData = '城市：' + weatherData.currentCity + '\n' + 'PM2.5：' + weatherData.pm25 + '\n' + '日期：' + weatherData.date + '\n' + '温度：' + weatherData.temperature + '\n' + '天气：' + weatherData.weatherDesc + '\n' + '风力：' + weatherData.wind + '\n';
+      that.setData({
+        weatherData: weatherData
+      })
+    }
+    BMap.weather({
+      fail: fail,
+      success: success
+    })
   }
 })

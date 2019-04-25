@@ -11,19 +11,24 @@
     </view>
   </view>
   <!-- 显示设备数 -->
-  <view class='dev-title' wx:if='{{hasDev}}'>
+  <view class='dev-title'>
     <image class='dev-icon' src='/images/dev_pic/devicon.png'></image>
-    <text class='dev-count'>{{devCount+countText}}</text>
+    <text class='dev-count'>{{countText+devCount}}</text>
   </view>
   <!-- 设备标题 -->
-  <view class='headline' wx:if='{{hasDev}}'>{{headline}}</view>
+  <view class='headline'>{{headline}}</view>
   <!-- 设备信息 -->
-  <view class='dev-info' wx:if='{{isScan}}' bindtap='ceshi'>
+  <view class='dev-info' wx:if='{{hasDev}}' bindtap='addDevInfo'>
     <image class='dev-image' src='/images/dev_pic/dev.png'></image>
     <view class='dev-info-text'>
       <text>{{devName}}</text>
       <text>{{isOnline}}</text>
     </view>
+  </view>
+  <!-- 天气显示 -->
+  <view class='weather-view'>
+    <view class='tempature-info'></view>
+    <view class='other-info'></view>
   </view>
   <!-- 蒙层 -->
   <view class='mask-view' catchtouchmove='prenventTouchMove' wx:if='{{isShowInputDialog}}'></view>
@@ -32,8 +37,7 @@
     <view class='title-view'>{{inputTitle}}</view>
     <view class='content-view'>
       <view class='input-view'>
-        <input class='input' type='{{inputType}}' placeholder-class="input-holder" placeholder='{{placeholder}}' 
-        focus='{{focus}}' bindinput='inputChange'>
+        <input class='input' type='{{inputType}}' placeholder-class="input-holder" placeholder='{{placeholder}}' focus='{{focus}}' bindinput='inputChange'>
         </input>
       </view>
     </view>
