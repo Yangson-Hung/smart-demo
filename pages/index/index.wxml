@@ -1,20 +1,23 @@
 <view class='container'>
+  <!-- 背景 -->
   <image src='/images/background/back.png' style='width: {{width}}px; height: {{height}}px'></image>
-
+  <!-- 右上角加号 -->
   <image class='addImg' src='/images/index_pic/add.png' bindtap='showMenu'></image>
+  <!-- 点击加号对话框 -->
   <view class='add-dialog' wx:if='{{isShowMenu}}'>
     <view class='add-content'>
-      <view class='scan-item'>123</view>
-      <view class='input-item'>456</view>
+      <view class='scan-item' bindtap='scanCode' hover-class='add-dialog-hover'>{{scanText}}</view>
+      <view class='input-item' bindtap='inputNum' hover-class='add-dialog-hover'>{{inputText}}</view>
     </view>
   </view>
-
+  <!-- 显示设备数 -->
   <view class='dev-title' wx:if='{{hasDev}}'>
     <image class='dev-icon' src='/images/dev_pic/devicon.png'></image>
     <text class='dev-count'>{{devCount+countText}}</text>
   </view>
+  <!-- 设备标题 -->
   <view class='headline' wx:if='{{hasDev}}'>{{headline}}</view>
-
+  <!-- 设备信息 -->
   <view class='dev-info' wx:if='{{isScan}}' bindtap='ceshi'>
     <image class='dev-image' src='/images/dev_pic/dev.png'></image>
     <view class='dev-info-text'>
@@ -22,27 +25,19 @@
       <text>{{isOnline}}</text>
     </view>
   </view>
-  
-  <view class='btn-area'>
-    <button class='btn-scan' hover-class='btn-hover-scan' bindtap='btnScanCode'>
-      <image src='/images/btn_pic/scan.png' style='width: 32px; height: 32px; position: absolute; left: 80rpx; bottom: 15rpx'></image>
-      {{btnScanText}}
-    </button>
-    <button class='btn-input' hover-class='btn-hover-input' bindtap='btnInputNum'>
-      <image src='/images/btn_pic/input.png' style='width: 32px; height: 32px; position: absolute; left: 80rpx; bottom: 15rpx'></image>
-      {{btnInputText}}
-    </button>
-  </view>
+  <!-- 蒙层 -->
   <view class='mask-view' catchtouchmove='prenventTouchMove' wx:if='{{showModal}}'></view>
-
+  <!-- 输入对话框 -->
   <view class='dialog-view' wx:if="{{showModal}}">
     <view class='title-view'>{{inputTitle}}</view>
     <view class='content-view'>
       <view class='input-view'>
-        <input class='input' type='{{inputType}}' placeholder-class="input-holder" placeholder='{{placeholder}}' focus='{{focus}}' bindinput='inputChange'>
+        <input class='input' type='{{inputType}}' placeholder-class="input-holder" placeholder='{{placeholder}}' 
+        focus='{{focus}}' bindinput='inputChange'>
         </input>
       </view>
     </view>
+    <!-- 取消和确定按钮 -->
     <view class='footer-view'>
       <view class='cancel-view' bindtap='onCancel' data-status='cancel'>{{cancelText}}</view>
       <view class='confirm-view' bindtap='onConfirm' data-status='confirm'>{{confirmText}}</view>

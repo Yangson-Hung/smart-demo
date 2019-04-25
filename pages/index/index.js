@@ -13,8 +13,8 @@ Page({
    * 页面数据
    */
   data: {
-    btnScanText: "扫码添加设备",
-    btnInputText: "输入编号添加设备",
+    scanText: "扫二维码",
+    inputText: "输入编号",
     width: app.globalData.systemInfo.windowWidth,
     height: app.globalData.systemInfo.windowHeight,
     showModal: false,
@@ -32,25 +32,24 @@ Page({
     countText: '个设备',
     headline: '设备',
     devName: '默认名称',
-    isOnline: '在线'
+    isOnline: '在线',
+    isShowMenu: false
   },
   showMenu: function() {
-    // wx.showActionSheet({
-    //   itemList: ['1','2'],
-    //   success: function() {
-
-    //   }
-    // })
     this.setData({
-      isShowMenu: true
+      isShowMenu: !this.data.isShowMenu
     })
   },
   /**
    * 扫码添加设备
    */
-  btnScanCode: function () {
+  scanCode: function () {
+    this.setData({
+      isShowMenu: false
+    })
     var that = this
     wx.scanCode({
+      onlyFromCamera: true,
       success(res) {
         console.log(res)
         // this.setData({
@@ -84,7 +83,10 @@ Page({
   /**
    * 输入编号添加设备
    */
-  btnInputNum: function () {
+  inputNum: function () {
+    this.setData({
+      isShowMenu: false
+    })
     this.showModal()
   },
   /**
