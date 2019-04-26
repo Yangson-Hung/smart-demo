@@ -14,7 +14,15 @@ Page({
    * 页面数据
    */
   data: {
-    weatherData: "",
+    weatherData: {
+      city: "",
+      date: "",
+      pm25: "",
+      range: "",
+      temp: "",
+      desc: "",
+      wind: "",
+    },
     ak: "mtxmirSI8Rrr4auxsCXklYYCeg4f6ECH",
     scanText: "扫二维码",
     inputText: "输入编号",
@@ -36,6 +44,12 @@ Page({
     devName: '默认名称',
     isOnline: '在线',
     isShowMenu: false
+  },
+  /**
+   * 监听页面加载完成
+   */
+  onLoad: function() {
+    this.bMapWeather()
   },
   showMenu: function() {
     this.setData({
@@ -75,10 +89,8 @@ Page({
         //本地保存
         that.setDevStorge('devInfo', devInfo)
       },
-      fail(res) {
-      },
-      complete(res) {
-      }
+      fail(res) {},
+      complete(res) {}
     })
   },
   /**
@@ -157,16 +169,22 @@ Page({
     var BMap = new bmap.BMapWX({
       ak: that.data.ak
     })
-    var fail = function (data) {
+    var fail = function(data) {
       console.log('获取天气失败！')
     }
-    var success = function (data) {
+    var success = function(data) {
       console.log('获取天气成功！')
       var weatherData = data.currentWeather[0]
-      console.log(weatherData)
-      weatherData = '城市：' + weatherData.currentCity + '\n' + 'PM2.5：' + weatherData.pm25 + '\n' + '日期：' + weatherData.date + '\n' + '温度：' + weatherData.temperature + '\n' + '天气：' + weatherData.weatherDesc + '\n' + '风力：' + weatherData.wind + '\n';
       that.setData({
-        weatherData: weatherData
+        weatherData: {
+          city: weatherData.currentCity,
+          date: weatherData.date.substring(0, 9),
+          pm25: '空气质量：'+weatherData.pm25,
+          range: weatherData.temperature,
+          temp: weatherData.date.substring(14, 17),
+          desc: weatherData.weatherDesc,
+          wind: weatherData.wind
+        }
       })
     }
     BMap.weather({

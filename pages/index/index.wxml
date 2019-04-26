@@ -27,8 +27,17 @@
   </view>
   <!-- 天气显示 -->
   <view class='weather-view'>
-    <view class='tempature-info'></view>
-    <view class='other-info'></view>
+    <view class='weather-info-left'>
+      <view class='temp'>{{weatherData.temp}}</view>
+      <view class='desc'>{{weatherData.desc}}</view>
+      <view class='range'>{{weatherData.range}}</view>
+      <view class='wind'>{{weatherData.wind}}</view>
+    </view>
+    <view class='weather-info-right'>
+      <view class='city'>{{weatherData.city}}</view>
+      <view class='pm25'>{{weatherData.pm25}}</view>
+      <view class='date'>{{weatherData.date}}</view>
+    </view>
   </view>
   <!-- 蒙层 -->
   <view class='mask-view' catchtouchmove='prenventTouchMove' wx:if='{{isShowInputDialog}}'></view>

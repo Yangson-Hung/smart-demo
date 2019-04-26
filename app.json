@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/weather/weather",
     "pages/map/map",
     "pages/my/my",
     "pages/about/about",
