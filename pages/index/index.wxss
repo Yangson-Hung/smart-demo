@@ -3,8 +3,54 @@
   flex-direction: row;
   align-items: center;
   position: absolute;
-  top: 50rpx;
+  top: 200rpx;
   left: 50rpx;
+}
+
+.addImg {
+  height: 24px;
+  width: 24px;
+  position: absolute;
+  right: 30rpx;
+  top: 200rpx;
+}
+
+.add-dialog {
+  position: fixed;
+  top: 270rpx;
+  right: 45rpx;
+  background-color: #f5f5f5;
+  border-radius: 15rpx;
+}
+
+.add-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size: 40rpx;
+  align-items: center;
+  justify-content: center;
+}
+
+.scan-item {
+  padding: 5px 15px;
+  border-bottom: 1px solid #dedede;
+}
+
+.input-item {
+  padding: 5px 15px;
+}
+
+.scan-item-hover {
+  background-color: #e6e6e6;
+  border-top-left-radius: 15rpx;
+  border-top-right-radius: 15rpx;
+}
+
+.input-item-hover {
+  background-color: #e6e6e6;
+  border-bottom-left-radius: 15rpx;
+  border-bottom-right-radius: 15rpx;
 }
 
 .dev-icon {
@@ -20,7 +66,7 @@
 
 .headline {
   position: absolute;
-  top: 200rpx;
+  top: 350rpx;
   left: 50rpx;
   color: white;
   font-size: 40rpx;
@@ -49,31 +95,63 @@
   align-items: center;
 }
 
-.btn-area {
-  position: absolute;
-  bottom: 100rpx;
-  left: 100rpx;
-  right: 100rpx;
-  z-index: 1;
+.weather-view {
+  display: flex;
+  flex-direction: row;
+  width: 540rpx;
+  overflow: hidden;
+  position: fixed;
+  top: 0rpx;
+  color: #000;
+  font-family: 微软雅黑, 宋体;
 }
 
-.btn-scan {
-  color: #fff;
-  background-color: #2a5caa;
-  margin-bottom: 50rpx;
+.weather-info-left {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  font-weight: 600;
+  text-align: center;
 }
 
-.btn-input {
-  color: #2a5caa;
-  background-color: #fff;
+.temp {
+  margin-top: 10rpx;
+  font-size: 80rpx;
 }
 
-.btn-hover-scan {
-  background-color: #2052a0;
+.range {
+  margin-top: 25rpx;
+  font-size: 20rpx;
 }
 
-.btn-hover-input {
-  background-color: #f5f5f5;
+.desc {
+  font-size: 20rpx;
+}
+
+.wind {
+  font-size: 20rpx;
+}
+
+.weather-info-right {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  font-weight: 600;
+  text-align: center;
+}
+
+.city {
+  margin-top: 10rpx;
+  font-size: 80rpx;
+}
+
+.pm25 {
+  margin-top: 50rpx;
+  font-size: 20rpx;
+}
+
+.date {
+  font-size: 20rpx;
 }
 
 .mask-view {

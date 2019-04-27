@@ -144,7 +144,6 @@ App({
     },
     circleRadius: 0,
     devInfo: {
-      isScan: false,
       hasScan: false,
       devCount: 0
     },
