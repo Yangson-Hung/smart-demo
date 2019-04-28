@@ -1,5 +1,19 @@
 const config = require('./config')
 App({
+  onAdd() {
+    const db = wx.cloud.database()
+    db.collection('my').add({
+      data: {
+        flag: 1
+      },
+      success: res => {
+        console.log(res._id)
+      },
+      fail: res => {
+        console.log('fail')
+      }
+    })
+  },
   /**
    * 监听小程序初始化
    */
@@ -8,16 +22,17 @@ App({
     wx.cloud.init({
       traceUser: true
     })
+    this.onAdd()
     //获取系统信息
-    this.getSystemInfo();
+    this.getSystemInfo()
     //设置地图样式
-    this.setMapStytle();
+    this.setMapStytle()
 
     //读取设备信息
-    this.readDevInfo();
+    this.readDevInfo()
 
     //读取地点信息
-    this.readPositionInfo();
+    this.readPositionInfo()
 
     // 登录
     wx.login({
