@@ -11,11 +11,12 @@
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"autoAudits": true,
-		"uglifyFileName": true
+		"autoAudits": false,
+		"uglifyFileName": true,
+		"checkInvalidKey": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.6.5",
+	"libVersion": "2.6.6",
 	"appid": "wx06415e5c2d0a8bf8",
 	"projectname": "smart-demo",
 	"debugOptions": {

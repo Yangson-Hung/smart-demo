@@ -131,7 +131,7 @@ App({
   /**
    * 获取openid
    */
-  getOpenidViaCloud: function () {
+  getOpenidViaCloud: function() {
     var that = this
     wx.cloud.callFunction({
       name: 'login',
