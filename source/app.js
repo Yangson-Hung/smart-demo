@@ -1,45 +1,26 @@
 const config = require('./config')
 App({
-  onAdd() {
-    const db = wx.cloud.database()
-    db.collection('my').add({
-      data: {
-        flag: 1
-      },
-      success: res => {
-        console.log(res._id)
-      },
-      fail: res => {
-        console.log('fail')
-      }
-    })
-  },
   /**
    * 监听小程序初始化
    */
   onLaunch: function() {
 
+    //小程序云能力初始化
     wx.cloud.init({
       traceUser: true
     })
-    this.onAdd()
+
+    //获取openid
+    this.getOpenidViaCloud()
     //获取系统信息
     this.getSystemInfo()
     //设置地图样式
     this.setMapStytle()
-
     //读取设备信息
     this.readDevInfo()
-
     //读取地点信息
     this.readPositionInfo()
 
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
-    })
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -148,6 +129,22 @@ App({
     }
   },
   /**
+   * 获取openid
+   */
+  getOpenidViaCloud: function () {
+    var that = this
+    wx.cloud.callFunction({
+      name: 'login',
+      data: {},
+      success: res => {
+        that.globalData.openid = res.result.openid
+      },
+      fail: err => {
+        console.log("get openid fail!", err)
+      }
+    })
+  },
+  /**
    * 全局数据
    */
   globalData: {
@@ -177,35 +174,4 @@ App({
       key4: 'VYHBZ-UV4KJ-EWLF2-KIESM-APMJ2-QGFG7'
     }
   },
-  getUserOpenId(callback) {
-    const self = this
-
-    if (self.globalData.openid) {
-      callback(null, self.globalData.openid)
-    } else {
-      wx.login({
-        success(data) {
-          wx.request({
-            url: config.openIdUrl,
-            data: {
-              code: data.code
-            },
-            success(res) {
-              console.log('拉取openid成功', res)
-              self.globalData.openid = res.data.openid
-              callback(null, self.globalData.openid)
-            },
-            fail(res) {
-              console.log('拉取用户openid失败，将无法正常使用开放接口等服务', res)
-              callback(res)
-            }
-          })
-        },
-        fail(err) {
-          console.log('wx.login 接口调用失败，将无法正常使用开放接口等服务', err)
-          callback(err)
-        }
-      })
-    }
-  }
 })

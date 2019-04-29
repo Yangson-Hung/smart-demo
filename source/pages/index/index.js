@@ -170,10 +170,9 @@ Page({
       ak: that.data.ak
     })
     var fail = function(data) {
-      console.log('获取天气失败！')
+      console.log('fail!')
     }
     var success = function(data) {
-      console.log('获取天气成功！')
       var weatherData = data.currentWeather[0]
       that.setData({
         weatherData: {

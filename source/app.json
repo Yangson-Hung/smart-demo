@@ -7,8 +7,7 @@
     "pages/help/help",
     "pages/issue/issue",
     "pages/manager/manager",
-    "pages/set/set",
-    "pages/template-message/template-message"
+    "pages/set/set"
   ],
   "window": {
     "navigationBarBackgroundColor": "#2a5caa",
