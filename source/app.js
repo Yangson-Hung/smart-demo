@@ -138,6 +138,7 @@ App({
       data: {},
       success: res => {
         that.globalData.openid = res.result.openid
+        console.log(res)
       },
       fail: err => {
         console.log("get openid fail!", err)
