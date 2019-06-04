@@ -65,7 +65,7 @@ Page({
     })
     var that = this
     wx.scanCode({
-      onlyFromCamera: true,
+      onlyFromCamera: false,
       success(res) {
         console.log(res)
         // this.setData({

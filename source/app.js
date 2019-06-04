@@ -49,7 +49,7 @@ App({
     var that = this
     wx.getSystemInfo({
       success: function(res) {
-        that.globalData.systemInfo = res;
+        that.globalData.systemInfo = res
       }
     })
   },
@@ -138,7 +138,7 @@ App({
       data: {},
       success: res => {
         that.globalData.openid = res.result.openid
-        console.log(res)
+        console.log("get openid success!", res)
       },
       fail: err => {
         console.log("get openid fail!", err)
