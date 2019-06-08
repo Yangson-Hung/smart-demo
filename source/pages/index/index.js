@@ -14,6 +14,7 @@ Page({
    * 页面数据
    */
   data: {
+    change_color: true,
     weatherData: {
       city: "",
       date: "",
@@ -27,16 +28,21 @@ Page({
     width: app.globalData.windowWidth,
     height: app.globalData.windowHeight,
   },
-  /**
-   * 监听页面加载完成
-   */
   onLoad: function () {
+    this.changeColotTimer()
     this.setData({
       userInfo: app.globalData.userInfo
     })
     this.bMapWeather()
   },
-
+  changeColor: function () {
+    this.setData({
+      change_color: !this.data.change_color
+    })
+  },
+  changeColotTimer: function () {
+    setInterval(this.changeColor, 618)
+  },
   mypage: function () {
     wx.navigateTo({
       url: '/pages/my/my',
@@ -47,7 +53,7 @@ Page({
       url: '/pages/map/map',
     })
   },
-  newDev:function(){
+  newDev: function () {
     wx.navigateTo({
       url: '/pages/welcome/welcome',
     })
