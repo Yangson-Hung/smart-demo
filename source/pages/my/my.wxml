@@ -1,5 +1,5 @@
 <view class='page-my'>
-  <view class='userinfo'>
+  <!-- <view class='userinfo'>
     <view class='login-view' wx:if='{{!hasUserInfo && canIUse}}'>
       <image class='login-image' src='{{loginImg}}' mode='cover'></image>
       <button class='login-btn' open-type='getUserInfo' bindgetuserinfo='getUserInfo'>点击登录</button>
@@ -10,7 +10,8 @@
         <text class='userinfo-nickname'>{{userInfo.nickName}}</text>
       </view>
     </block>
-  </view>
+  </view> -->
+
   <block wx:for='{{myList}}' wx:key='1' wx:for-item='list'>
     <view class='list {{list.router}}' hover-class='list-hover' bindtap='turnToPage' data-router='{{list.router}}'>
       <image class='icon' src='{{list.iconPath}}'></image>

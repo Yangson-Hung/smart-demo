@@ -1,0 +1,23 @@
+<view class='page' style='background-color:#f1f1f1;height:{{height}}px;width:{{width}}px'>
+  <view class='header'>
+    <view class='header-title'>安若科技</view>
+  </view>
+  <view class='body'>
+
+    <view class='title' bindtap='scanCode' style='height:120rpx;width:{{width-40}}px'>
+      <image class='scan' src='/images/scan.png'></image>
+      <text class='motto'>扫一扫</text>
+      <view class='arrow'></view>
+    </view>
+
+    <view class='step' style='height:100%;width:{{width-40}}px'>
+      <view class='step-title'>设备绑定：</view>
+      <view class='tip'>1）开启拐杖设备电源，等待指示灯亮起获取定位</view>
+      <view class='tip'>2）点击“扫一扫”，扫描设备上的二维码</view>
+      <view class='tip'>3）扫码后即可绑定设备</view>
+    </view>
+  </view>
+
+
+
+</view>

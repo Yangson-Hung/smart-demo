@@ -30,6 +30,7 @@ App({
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo
+              wx.setStorageSync('userInfo', res.userInfo)
 
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
@@ -41,6 +42,8 @@ App({
         }
       }
     })
+
+    this.getUserInfoFromLocal()
   },
   /**
    * 获取手机系统信息
@@ -49,7 +52,8 @@ App({
     var that = this
     wx.getSystemInfo({
       success: function(res) {
-        that.globalData.systemInfo = res
+        that.globalData.windowHeight = res.windowHeight
+        that.globalData.windowWidth = res.windowWidth
       }
     })
   },
@@ -91,6 +95,15 @@ App({
       duration: param.duration || 1500,
     })
   },
+
+  //从本地取用户信息
+  getUserInfoFromLocal: function() {
+    var userInfo = wx.getStorageSync('userInfo')
+    if (userInfo !== "") {
+      this.globalData.userInfo = userInfo
+    }
+  },
+
   /**
    * 设置地图样式
    */
@@ -138,7 +151,6 @@ App({
       data: {},
       success: res => {
         that.globalData.openid = res.result.openid
-        console.log("get openid success!", res)
       },
       fail: err => {
         console.log("get openid fail!", err)
@@ -149,6 +161,10 @@ App({
    * 全局数据
    */
   globalData: {
+    devInfo: {
+      hasDev: false,
+      devCount: 0
+    },
     openid: null,
     markerInfo: {
       laittude: null,
@@ -164,7 +180,8 @@ App({
       devCount: 0
     },
     userInfo: null,
-    systemInfo: {},
+    windowHeight: null,
+    windowWidth: null,
     appTitle: "安若智行监护",
     share_slogan: "智能拐杖 助力出行",
     subkey: 'key1',

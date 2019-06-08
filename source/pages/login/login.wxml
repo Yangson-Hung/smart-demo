@@ -1,0 +1,9 @@
+<view class='page' style='background-color:#f1f1f1;height:{{height}}px;width:{{width}}px'>
+  <view class='header'>
+    <view class='header-title'>安若科技</view>
+  </view>
+  <view class='body'>
+    <button type='primary' class='login-btn' open-type='getUserInfo' bindgetuserinfo='getUserInfo'>点击进入小程序</button>
+
+  </view>
+</view>

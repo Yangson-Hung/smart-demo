@@ -1,0 +1,23 @@
+.body {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  left: 240rpx;
+  bottom: 30rpx;
+}
+
+.page {
+  background-color: #4682B4;
+}
+
+.header {
+  background-color: #4682B4;
+  color: white;
+}
+
+.header-title {
+  font-size: 100rpx;
+  padding-top: 100rpx;
+  padding-bottom: 50rpx;
+  text-align: center;
+}

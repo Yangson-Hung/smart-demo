@@ -1,6 +1,9 @@
 {
   "pages": [
+    "pages/login/login",
     "pages/index/index",
+    "pages/welcome/welcome",
+    "pages/devinfo/devinfo",
     "pages/map/map",
     "pages/my/my",
     "pages/about/about",
@@ -8,35 +11,11 @@
     "pages/issue/issue",
     "pages/manager/manager",
     "pages/set/set"
+
   ],
   "window": {
-    "navigationBarBackgroundColor": "#2a5caa",
+    "navigationBarBackgroundColor": "#4682B4",
     "navigationBarTextStyle": "white"
-  },
-  "tabBar": {
-    "color": "#bfbfbf",
-    "selectedColor": "#2a5caa",
-    "backgroundColor": "#ffffff",
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "首页",
-        "iconPath": "images/tabBar_icon/home.png",
-        "selectedIconPath": "images/tabBar_icon/home_active.png"
-      },
-      {
-        "pagePath": "pages/map/map",
-        "text": "地图",
-        "iconPath": "images/tabBar_icon/map.png",
-        "selectedIconPath": "images/tabBar_icon/map_active.png"
-      },
-      {
-        "pagePath": "pages/my/my",
-        "text": "我的",
-        "iconPath": "images/tabBar_icon/my.png",
-        "selectedIconPath": "images/tabBar_icon/my_active.png"
-      }
-    ]
   },
   "permission": {
     "scope.userLocation": {

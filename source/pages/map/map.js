@@ -44,8 +44,8 @@ Page({
       enableOverlooking: true
     },
     mapStyleList: ['经典样式', '墨渊样式', '白浅样式', '烟翠样式', ],
-    width: app.globalData.systemInfo.windowWidth,
-    height: app.globalData.systemInfo.windowHeight,
+    width: app.globalData.windowWidth,
+    height: app.globalData.windowHeight,
     failFlag: false,
     showModalCount: 0,
     showModal: false,

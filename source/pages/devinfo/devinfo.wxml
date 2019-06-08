@@ -1,0 +1,18 @@
+<view class='page' style='background-color:#f1f1f1;height:{{height}}px;width:{{width}}px'>
+  <view class='header'>输入设备信息</view>
+  <view class='body' style='width:{{width-40}}px'>
+    <form>
+      <view class='box'>
+        <view class='title'>手机号码:</view>
+        <input placeholder='您的手机号码' type='number' name="phone1"></input>
+      </view>
+
+      <view class='box'>
+        <view class='title'>手机号码:</view>
+        <input placeholder='被监护人手机号码' type='number' name="phone2"></input>
+      </view>
+
+
+    </form>
+  </view>
+</view>
