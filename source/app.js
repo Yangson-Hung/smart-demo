@@ -4,25 +4,43 @@ App({
    * 监听小程序初始化
    */
   onLaunch: function() {
-
+    var that = this
     //小程序云能力初始化
     wx.cloud.init({
       traceUser: true
     })
+
     //获取openid
     this.getOpenidViaCloud()
 
+    //获取存在本地的openid
     this.globalData.openid = wx.getStorageSync("openid")
+
     var tmp = wx.getStorageSync("userInfo")
+
+    //读取到本地缓存的用户信息
     if (tmp !== "") {
       this.globalData.userInfo = tmp
       this.globalData.hasUserInfo = true
+      
       const db = wx.cloud.database()
       db.collection('device').where({
         _openid: this.globalData.openid
       }).get({
         success: res => {
           if (res.data.length !== 0) {
+            db.collection('location').where({
+              _openid: that.globalData.openid
+            }).get({
+              success: res => {
+                that.globalData.gpsinfo.id = res.data[0].id,
+                that.globalData.gpsinfo.latitude = res.data[0].latitude,
+                that.globalData.gpsinfo.longitude = res.data[0].longitude
+              },
+              fail: err => {
+                console.log(err)
+              }
+            })
             //已经有设备，直接跳转
             wx.reLaunch({
               url: '/pages/index/index',
@@ -168,13 +186,18 @@ App({
    * 全局数据
    */
   globalData: {
+    gpsinfo: {
+      id: null,
+      latitude: null,
+      longitude: null
+    },
     openid: null,
     markerInfo: {
-      laittude: null,
+      latitude: null,
       longitude: null
     },
     circleCenter: {
-      laittude: null,
+      latitude: null,
       longitude: null
     },
     circleRadius: 0,

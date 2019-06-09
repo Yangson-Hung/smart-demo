@@ -16,7 +16,6 @@
   margin-right: 10rpx;
   background-color: transparent;
   color: white;
-  border-color: white;
 }
 
 .btn::after {

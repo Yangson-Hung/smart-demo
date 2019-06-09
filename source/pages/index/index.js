@@ -55,7 +55,7 @@ Page({
   },
   newDev: function () {
     wx.navigateTo({
-      url: '/pages/welcome/welcome?id=1',
+      url: '/pages/welcome/welcome',
     })
   },
   /**

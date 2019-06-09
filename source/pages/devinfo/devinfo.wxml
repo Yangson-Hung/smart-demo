@@ -1,18 +1,22 @@
 <view class='page' style='background-color:#f1f1f1;height:{{height}}px;width:{{width}}px'>
   <view class='header'>输入设备信息</view>
-  <view class='body' style='width:{{width-40}}px'>
-    <form>
+  <form bindsubmit="deviceBindingNotification" report-submit>
+    <view class='body' style='width:{{width-40}}px'>
       <view class='box'>
-        <view class='title'>手机号码:</view>
-        <input placeholder='您的手机号码' type='number' name="phone1"></input>
+        <view class='title'>联系电话：</view>
+        <input placeholder='与设备绑定的手机号' type='number' name="phone"></input>
       </view>
-
       <view class='box'>
-        <view class='title'>手机号码:</view>
-        <input placeholder='被监护人手机号码' type='number' name="phone2"></input>
+        <view class='title'>联系人姓名：</view>
+        <input placeholder='请填写真实姓名' type='text' name="name1"></input>
       </view>
-
-
-    </form>
-  </view>
+      <view class='box'>
+        <view class='title'>使用者姓名：</view>
+        <input placeholder='请填写真实姓名' type='text' name="name2"></input>
+      </view>
+    </view>
+    <view class='btn-area'>
+      <button class='btn' hover-class='btn-hover' form-type="submit" loading="{{cloudLoading}}">保存</button>
+    </view>
+  </form>
 </view>

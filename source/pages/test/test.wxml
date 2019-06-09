@@ -1,0 +1,4 @@
+<form bindsubmit="sendTemplateMessageViaCloudFunction" report-submit>
+  <button form-type="submit" loading="{{cloudLoading}}">发送模板消息</button>
+</form>
+

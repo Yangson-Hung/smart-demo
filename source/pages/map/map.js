@@ -1,5 +1,6 @@
 const app = getApp()
-
+var QQMapWX = require('../../libs/qqmap-wx-jssdk.js');
+var qqmapsdk;
 Page({
   /**
    * 转发分享
@@ -61,6 +62,11 @@ Page({
    * 监听页面加载
    */
   onLoad: function() {
+
+    qqmapsdk = new QQMapWX({
+      key: 'ZSVBZ-BD362-JRFUE-CEFYF-XRUJ5-3MBYE'
+    })
+
     var that = this
     //获取位置
     wx.getLocation({
@@ -107,6 +113,7 @@ Page({
    * 监听页面显示
    */
   onShow: function() {
+
     var that = this
     /**
      * 获取用户授权
@@ -153,6 +160,27 @@ Page({
             }
           })
         }
+      }
+    })
+
+    this.setData({
+      'mapAttr.circles[0].radius': app.globalData.circleRadius,
+      'mapAttr.circles[0].latitude': app.globalData.circleCenter.latitude,
+      'mapAttr.circles[0].longitude': app.globalData.circleCenter.longitude,
+      'mapAttr.circles[0].color': '#2a5caa',
+      'mapAttr.circles[0].fillColor': '#7cb5ec88',
+      'mapAttr.circles[0].strokeWidth': 1,
+
+      'mapAttr.markers[0].latitude': app.globalData.markerInfo.latitude,
+      'mapAttr.markers[0].longitude': app.globalData.markerInfo.longitude,
+      'mapAttr.markers[0].callout': {
+        content: '点击设置范围',
+        color: '#1e90ff',
+        fontSize: 10,
+        borderRadius: '10',
+        bgColor: '#ffffff',
+        padding: 10,
+        display: 'ALWAYS'
       }
     })
     this.showDevLocation()
@@ -266,6 +294,7 @@ Page({
         longitude: currMarker.longitude
       }
       this.setPositionInfo('circleCenter', circleCenter)
+      app.globalData.circleCenter = circleCenter
     }
   },
   /**
@@ -275,11 +304,11 @@ Page({
     var that = this
     wx.chooseLocation({
       success: function(res) {
+        //二次选择位置时，清除circle内容
+        app.globalData.circleRadius = 0
+        app.globalData.circleCenter.latitude = null
+        app.globalData.circleCenter.longitude = null
         that.setData({
-          //二次选择位置时，清除circle内容
-          'mapAttr.circles[0].latitude': null,
-          'mapAttr.circles[0].longitude': null,
-          'mapAttr.circles[0].radius': 0,
           //选择位置后获得经纬度
           'mapAttr.markers[0].latitude': res.latitude,
           'mapAttr.markers[0].longitude': res.longitude,
@@ -297,6 +326,7 @@ Page({
           latitude: res.latitude,
           longitude: res.longitude
         }
+        app.globalData.markerInfo = markerInfo
         that.setPositionInfo('markerInfo', markerInfo)
       }
     })
@@ -318,6 +348,7 @@ Page({
       })
       var circleRadius = this.data.mapAttr.circles[0].radius
       this.setPositionInfo('circleRadius', circleRadius)
+      app.globalData.circleRadius = circleRadius
     } else {
       app.showToast({
         title: '输入值不正确',
@@ -353,25 +384,13 @@ Page({
       inputValue: e.detail.value
     })
   },
-  /**
-   * 扫码后，从云端获取经纬度信息
-   */
+
   showDevLocation: function() {
-    const db = wx.cloud.database()
-    db.collection('location').where({
-      _openid: app.globalData.openid
-    }).get({
-      success: res => {
-        this.setData({
-          'mapAttr.markers[1]': {
-            id: res.data[0].id,
-            latitude: res.data[0].latitude,
-            longitude: res.data[0].longitude,
-          }
-        })
-      },
-      fail: err => {
-        console.log(err)
+    this.setData({
+      'mapAttr.markers[1]': {
+        id: app.globalData.gpsinfo.id,
+        latitude: app.globalData.gpsinfo.latitude,
+        longitude: app.globalData.gpsinfo.longitude
       }
     })
   },
@@ -380,5 +399,28 @@ Page({
    */
   setPositionInfo: function(key, data) {
     wx.setStorageSync(key, data)
+  },
+  /**
+   * 测距离
+   */
+  calculateDistance: function(src, des) {
+    qqmapsdk.calculateDistance({
+      mode: 'straight',
+      form: {
+        latitude: src.latitude,
+        longitude: src.longitude
+      },
+      to: [{
+        latitude: des.latitude,
+        longitude: des.longitude
+      }],
+      sig: 'Db9ooprMnjDulIr2vigsDRYoqR0tA5bc',
+      success: res => {
+      
+      },
+      fail: err => {
+        console.log(err)
+      }
+    })
   }
 })
