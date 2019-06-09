@@ -25,15 +25,15 @@ Page({
       wind: "",
     },
     ak: "mtxmirSI8Rrr4auxsCXklYYCeg4f6ECH",
-    width: app.globalData.windowWidth,
-    height: app.globalData.windowHeight,
   },
   onLoad: function () {
     this.changeColotTimer()
     this.setData({
-      userInfo: app.globalData.userInfo
+      userInfo: app.globalData.userInfo,
+      width: app.globalData.windowWidth,
+      height: app.globalData.windowHeight
     })
-    this.bMapWeather()
+    //this.bMapWeather()
   },
   changeColor: function () {
     this.setData({
@@ -55,37 +55,37 @@ Page({
   },
   newDev: function () {
     wx.navigateTo({
-      url: '/pages/welcome/welcome',
+      url: '/pages/welcome/welcome?id=1',
     })
   },
   /**
    * 获取天气信息
    */
-  bMapWeather: function () {
-    var that = this
-    var BMap = new bmap.BMapWX({
-      ak: that.data.ak
-    })
-    var fail = function (data) {
-      console.log('fail!')
-    }
-    var success = function (data) {
-      var weatherData = data.currentWeather[0]
-      that.setData({
-        weatherData: {
-          city: weatherData.currentCity,
-          date: weatherData.date.substring(0, 9),
-          pm25: '空气质量：' + weatherData.pm25,
-          range: weatherData.temperature,
-          temp: weatherData.date.substring(14, 17),
-          desc: weatherData.weatherDesc,
-          wind: weatherData.wind
-        }
-      })
-    }
-    BMap.weather({
-      fail: fail,
-      success: success
-    })
-  }
+  // bMapWeather: function () {
+  //   var that = this
+  //   var BMap = new bmap.BMapWX({
+  //     ak: that.data.ak
+  //   })
+  //   var fail = function (data) {
+  //     console.log('fail!')
+  //   }
+  //   var success = function (data) {
+  //     var weatherData = data.currentWeather[0]
+  //     that.setData({
+  //       weatherData: {
+  //         city: weatherData.currentCity,
+  //         date: weatherData.date.substring(0, 9),
+  //         pm25: '空气质量：' + weatherData.pm25,
+  //         range: weatherData.temperature,
+  //         temp: weatherData.date.substring(14, 17),
+  //         desc: weatherData.weatherDesc,
+  //         wind: weatherData.wind
+  //       }
+  //     })
+  //   }
+  //   BMap.weather({
+  //     fail: fail,
+  //     success: success
+  //   })
+  // }
 })

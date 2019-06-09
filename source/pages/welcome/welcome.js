@@ -1,29 +1,42 @@
 const app = getApp()
 
 Page({
-  data: {
-    width: app.globalData.windowWidth,
-    height: app.globalData.windowHeight,
+  data: {},
+  onLoad: function() {
+    this.setData({
+      width: app.globalData.windowWidth,
+      height: app.globalData.windowHeight
+    })
   },
-  onLoad: function (options) {
-
-  },
-  scanCode: function () {
+  scanCode: function() {
     wx.scanCode({
-      onlyFromCamera: false,
-      success(res) {
+      success: res => {
         console.log(res)
-        app.showToast({
-          title: '绑定设备成功',
-          icon: 'success',
-          duration: 2000
-        })
-
-        app.globalData.devInfo.hasDev = true
-        wx.setStorageSync('devInfo', app.globalData.devInfo)
-
-        wx.redirectTo({
-          url: '/pages/index/index',
+        const db = wx.cloud.database()
+        db.collection('device').add({
+          data: {
+            status: "online"
+          },
+          success: res => {
+            app.showToast({
+              title: '绑定设备成功',
+              icon: 'success',
+              duration: 3000,
+              success: res => {
+                wx.redirectTo({
+                  url: '/pages/index/index',
+                })
+              }
+            })
+          },
+          fail: err => {
+            app.showToast({
+              title: '绑定设备失败',
+              icon: 'loading',
+              duration: 2000
+            })
+            console.log(err)
+          }
         })
       },
       fail(res) {

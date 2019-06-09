@@ -354,21 +354,26 @@ Page({
     })
   },
   /**
-   * 添加设备成功后，地图上显示标记
+   * 扫码后，从云端获取经纬度信息
    */
   showDevLocation: function() {
-    if (app.globalData.devInfo.hasDev) {
-      this.setData({
-        'mapAttr.markers[1]': {
-          id: 2,
-          // iconPath: '/images/map_pic/home.png',
-          width: '24px',
-          height: '24px',
-          latitude: 25.7039154131,
-          longitude: 119.3105632067,
-        }
-      })
-    }
+    const db = wx.cloud.database()
+    db.collection('location').where({
+      _openid: app.globalData.openid
+    }).get({
+      success: res => {
+        this.setData({
+          'mapAttr.markers[1]': {
+            id: res.data[0].id,
+            latitude: res.data[0].latitude,
+            longitude: res.data[0].longitude,
+          }
+        })
+      },
+      fail: err => {
+        console.log(err)
+      }
+    })
   },
   /**
    * 保存地点信息
