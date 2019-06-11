@@ -18,42 +18,54 @@ App({
 
     var tmp = wx.getStorageSync("userInfo")
 
-    //读取到本地缓存的用户信息
+    //如果有本地缓存用户信息
     if (tmp !== "") {
       this.globalData.userInfo = tmp
       this.globalData.hasUserInfo = true
-      
+
       const db = wx.cloud.database()
       db.collection('device').where({
-        _openid: this.globalData.openid
+        _openid: that.globalData.openid
       }).get({
         success: res => {
           if (res.data.length !== 0) {
+            var tmp = res.data
+            for (var i in tmp) {
+              that.globalData.deviceInfo.push({
+                //获取设备名
+                devName: tmp[i].devName,
+                //获取设备ID
+                devId: tmp[i].devId
+              })
+            }
+            //获取location集合的gps信息
             db.collection('location').where({
               _openid: that.globalData.openid
             }).get({
               success: res => {
-                that.globalData.gpsinfo.id = res.data[0].id,
-                that.globalData.gpsinfo.latitude = res.data[0].latitude,
+                that.globalData.gpsinfo.id = res.data[0].id
+                that.globalData.gpsinfo.latitude = res.data[0].latitude
                 that.globalData.gpsinfo.longitude = res.data[0].longitude
               },
-              fail: err => {
-                console.log(err)
-              }
             })
             //已经有设备，直接跳转
-            wx.reLaunch({
-              url: '/pages/index/index',
+            wx.showLoading({
+              title: '玩命加载中..',
             })
+            setTimeout(function(){
+              wx.hideLoading()
+            },3000)
+            setTimeout(function(){
+              wx.redirectTo({
+                url: '/pages/index/index',
+              })
+            },3000)            
           } else {
-            //没有添加设备，跳到扫码页
+            //没有获取到设备数，跳转到扫码页
             wx.reLaunch({
               url: '/pages/welcome/welcome',
             })
           }
-        },
-        fail: err => {
-          console.log(err)
         }
       })
     }
@@ -186,6 +198,7 @@ App({
    * 全局数据
    */
   globalData: {
+    deviceInfo: [],
     gpsinfo: {
       id: null,
       latitude: null,

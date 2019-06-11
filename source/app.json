@@ -1,10 +1,10 @@
 {
   "pages": [
     "pages/login/login",
+    "pages/index/index",
     "pages/devinfo/devinfo",
     "pages/test/test",
     "pages/map/map",
-    "pages/index/index",
     "pages/welcome/welcome",
     "pages/my/my",
     "pages/about/about",

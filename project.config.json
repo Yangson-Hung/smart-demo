@@ -16,7 +16,7 @@
 		"checkInvalidKey": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.6.6",
+	"libVersion": "2.7.1",
 	"appid": "wx06415e5c2d0a8bf8",
 	"projectname": "smart-demo",
 	"debugOptions": {

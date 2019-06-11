@@ -6,25 +6,30 @@
   </view>
 
   <view class='body'>
-    <view class='devinfo' style='height:200rpx;width:{{width-40}}px' bindtap='devmap'>
-      <view class='motto'>已添加设备</view>
-      <view class='icon'>
-        <image class='img' src='/images/dev_pic/dev.png'></image>
-        <view class='info'>
-          <view class='status'>
-            <view style='color:#a9a9a9'>在线状态：</view>
-            <view style='width:30rpx; height:30rpx; border-radius:50%; background-color:{{change_color?"#f5f5f5":"#0f0"}};'></view>
-            <view style='font-weight:bold; margin-left:10rpx;'>在线</view>
-          </view>
-          <view class='locate'>
-            <view style='color: #a9a9a9'>位置信息：</view>
-            <image animation="{{animation}}" src='/images/gps.png' style='width:30rpx; height: 30rpx'></image>
-            <view style='font-weight:bold; margin-left:10rpx;'>已定位</view>
-          </view>
+    <block wx:for="{{deviceInfo}}" wx:key="1">
+      <view class='devinfo' style='height:200rpx;width:{{width-40}}px'>
+        <view class='devinfo-head'>
+          <view class='devName'>{{item.devName}}</view>
+          <button data-dev-id='{{item.devId}}' class='jiebang-btn' size='mini' bindtap='jiebang' hover-class='jiebang-hover'>解绑设备</button>
         </view>
-        <view class='arrow'></view>
+        <view class='icon'>
+          <image class='img' src='/images/dev_pic/dev.png'></image>
+          <view class='info'>
+            <view class='status'>
+              <view style='color:#a9a9a9'>在线状态：</view>
+              <view style='width:30rpx; height:30rpx; border-radius:50%; background-color:{{change_color?"#fff":notice_color}};'></view>
+              <view style='font-weight:bold; margin-left:10rpx;'>在线</view>
+            </view>
+            <view class='locate'>
+              <view style='color: #a9a9a9'>位置信息：</view>
+              <image animation="{{animation}}" src='/images/gps.png' style='width:30rpx; height: 30rpx'></image>
+              <view style='font-weight:bold; margin-left:10rpx;'>已定位</view>
+            </view>
+          </view>
+          <view class='arrow' bindtap='devmap'></view>
+        </view>
       </view>
-    </view>
+    </block>
 
   </view>
 

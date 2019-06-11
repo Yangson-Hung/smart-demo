@@ -27,6 +27,9 @@ async function deviceBindingNotification(event) {
       },
       keyword5: {
         value: event.xinghao
+      },
+      keyword6: {
+        value: event.devName
       }
     }
   })
@@ -34,5 +37,6 @@ async function deviceBindingNotification(event) {
 }
 
 exports.main = async(event) => {
+  console.log(event)
   return deviceBindingNotification(event)
 }

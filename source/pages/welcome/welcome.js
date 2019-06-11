@@ -15,7 +15,7 @@ Page({
     wx.scanCode({
       success: res => {
         console.log(res)
-        wx.redirectTo({
+        wx.navigateTo({
           url: '/pages/devinfo/devinfo',
         })
       }
