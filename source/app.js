@@ -1,4 +1,4 @@
-const config = require('./config')
+//const config = require('./config')
 App({
   /**
    * 监听小程序初始化

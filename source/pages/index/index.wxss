@@ -79,8 +79,8 @@
 }
 
 .arrow {
-  width: 30rpx;
-  height: 30rpx;
+  width: 50rpx;
+  height: 50rpx;
   border-top: 5rpx solid gray;
   border-right: 5rpx solid grey;
   transform: rotate(45deg);
